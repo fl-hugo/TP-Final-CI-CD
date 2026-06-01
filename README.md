@@ -1,3 +1,5 @@
+Hugo Flandrin - Fabio Vincentelli
+
 # ShopLite - Starter TP final DevOps
 
 ShopLite est un projet de base pour un TP final DevOps.
