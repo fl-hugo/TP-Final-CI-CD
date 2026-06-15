@@ -19,6 +19,7 @@ services:
 
   api:
     build: ./api
+    image: ${API_IMAGE:-shoplite-api}:${API_TAG:-starter}
     container_name: shoplite_api
     environment:
       API_PORT: 3000
@@ -33,6 +34,7 @@ services:
 
   frontend:
     build: ./frontend
+    image: ${FRONTEND_IMAGE:-shoplite-frontend}:${FRONTEND_TAG:-starter}
     container_name: shoplite_frontend
     networks:
       - shoplite_net
