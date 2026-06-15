@@ -1,13 +1,36 @@
 name: CI starter a completer
 
 on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
   workflow_dispatch:
+
+env:
+  NODE_VERSION: "20"
+  IMAGE_NAME: ShopLite
 
 jobs:
   consigne:
     runs-on: ubuntu-latest
     steps:
-      - name: Consigne
-        run: |
-          echo "Ce workflow est volontairement minimal."
-          echo "Les etudiants doivent ajouter push, pull_request, npm ci, npm test, npm audit, npm outdated et docker compose build."
+      - name: Récupérer le code.
+        uses: actions/checkout@v4
+      
+      - name: Installer Node.js.
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: api/package-lock.json
+      
+      - name: Installer les dépendances.
+        working-directory: api
+        run: npm ci
+      
+      - name: Tester l'api.
+        working-directory: api
+        run: npm test
+
+      
