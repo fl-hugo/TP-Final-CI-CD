@@ -35,4 +35,4 @@ jobs:
 
       - name: Vérification Lint.
         working-directory: api
-        run: npm lint
+        run: npm run lint
